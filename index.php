@@ -1,4 +1,5 @@
 <?php include "includes/header.php"; ?>
+
         <div class="row">
             <div class="col-md-6 col-sm-12 info d-flex">
                 <h2>My Personal Collection</h2>
@@ -18,6 +19,21 @@
             </div>
         </div>
     </section>
+
+
+    <?php
+
+        $query = "SELECT * FROM album ";
+
+        $albums_query = mysqli_query($conn, $query);
+
+        if($albums_query) {
+            echo "Connected";
+        } else {
+            die("QUERY FAILED " . mysqli_error($conn));
+        }
+
+    ?>
 
 <!-- Carrefour -->
     <section class="carrefour" id="carrefour">
