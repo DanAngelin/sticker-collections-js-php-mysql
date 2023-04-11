@@ -27,16 +27,48 @@
 
         $albums_query = mysqli_query($conn, $query);
 
-        if($albums_query) {
-            echo "Connected";
-        } else {
+        if(!$albums_query) {
             die("QUERY FAILED " . mysqli_error($conn));
-        }
+        };
 
-    ?>
+        while($row = mysqli_fetch_array($albums_query )) {
+            
+            $album_name = $row['album_name'];
+            $album_icon = $row['album_icon'];
+            $album_need_stk = $row['album_need_stk'];
+            $album_spare_stk = $row['album_spare_stk'];
+
+            ?>
+
+    <section>
+            <div class="item">
+                <div class="album_item">
+                    <div class="album">
+                        <img src="img/logos/<?php echo $album_icon; ?>" alt="">
+                        <h3><?php echo $album_name; ?></h3>
+                    </div>
+                    <img src="img/carrefour.png" class="logo_colectie">
+                </div>
+                <div class="progress mt-3">
+                    <div class="progress-bar bar_angry_birds_2" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="cards">
+                    <div class="need" id="need_angry_birds_2">
+                        <p><span>Need(<?php echo count(explode(",", $album_need_stk)); ?>) :</span> <?php echo $album_need_stk; ?></p>
+                    </div>
+                    <div class="offer" id="offer_angry_birds_2">
+                        <p><span>Offer(<?php echo count(explode(",", $album_spare_stk)); ?>) :</span> <?php echo $album_spare_stk; ?></p> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+               <?php } ?>
+
+
 
 <!-- Carrefour -->
-    <section class="carrefour" id="carrefour">
+    <!-- <section>
         <div class="item">
             <div class="album_item">
                 <div class="album">
@@ -57,10 +89,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- PROFI -->
-
+<!-- 
     <section class="profi" id="profi">
         <div class="item">
             <div class="album_item">
@@ -82,7 +114,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
     <!-- Pom-Bar -->
